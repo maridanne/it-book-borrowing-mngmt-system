@@ -1,0 +1,36 @@
+{% extends "account/base.html" %}
+{% load socialaccount %}
+
+{% block title %}Transaction{% endblock %}
+
+{% block content%}
+<br>
+<h4>Hi {{ user.first_name }}, here are your transactions.</h4>
+<br><br>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Transaction ID</th>
+        <th>Book</th>
+        <th>Date Requested</th>
+        <th>Days</th>
+        <th>Date Due</th>
+        <th>Date Returned</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaction in transactions %}
+      <tr>
+        <td class="table-active">{{ transaction.transaction_id }}</td>
+        <td>{{ transaction.book }}</td>
+        <td>{{ transaction.date_requested }}</td>
+        <td>{{ transaction.days }}</td>
+        <td>{{ transaction.date_due }}</td>
+        <td>{{ transaction.date_returned }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+
+{% endblock %}

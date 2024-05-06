@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Categories
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl">Categories</h1>
+    <hr/>
+
+    <div class="">
+        {% for category in categories %}
+            <div>
+                <div>
+                    <a class="uppercase" class="btn btn-outline-success me-2" style="text-decoration: none;" href="{% url 'category-detail' category.slug %}">
+                        <b>
+                        {{ category.title }}
+                        </b>
+                    </a>
+                </div>  
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %} 

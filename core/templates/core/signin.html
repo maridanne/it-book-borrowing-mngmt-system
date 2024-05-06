@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% load socialaccount %}
+
+{% block title %}
+Sign in
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl">IT Book Borrowing Management System</h1>
+    <hr/>
+    <h1><b>Welcome back, Student.</b></h1>
+    <p>Start your reading journey today and unlock a world of possibilities.</p>
+    <br><br>
+    <p>Before you proceed with borrowing books, please log in first.</p> <br><br>
+    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="http://127.0.0.1:8000/accounts/login/">Log In</a>
+    <br>
+{% endblock %} 

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+
+:root {
+    --primary-color: #111827;
+    --light-color: #ffffff;
+}
+
+html,
+body {
+    color: var(--light-color);
+    background-color: var(--primary-color);
+    font-family: Poppins;
+    overflow-x: hidden;
+    margin: 5px;
+}

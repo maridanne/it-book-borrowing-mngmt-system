@@ -1,0 +1,93 @@
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <link rel="stylesheet" href="C:\Users\Dinah Marie Animos\Desktop\it-book-borrowing-mngmt-system\core\templates\core\style.css"> -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+        <title>{% block title %} {% endblock %} | IT Books</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+            @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+
+            :root {
+                --primary-color: #111827;
+                --light-color: #ffffff;
+            }
+            html,
+            body {
+                color: var(--light-color);
+                background-color: var(--primary-color);
+                font-family: Poppins;
+                overflow-x: hidden;
+                margin: 10px;
+            }
+            .options{
+                text-align: right;
+            }
+
+        </style>
+    </head>
+    <body style="padding: 0px 50px 0px 50px;">
+        <nav style="padding-top: 10px; justify-content: end;">
+            <div class="logo" >
+
+                <div class="col">
+                    <div class="col">
+                        <a href="{% url 'frontpage' %}"><img src="/media/uploads/assets/logoo.png" alt="EVSU"></a></a>
+                    </div>
+                    <div class="col" style="text-align: end; padding-bottom: 10px;">
+                        {% if user.is_authenticated %}
+                        <button onclick = "window.location.href='{% url 'transaction' %}'" type="button" class="btn btn-outline-success me-2">Transaction</button>
+                        {% endif %}
+                        {% if user.is_authenticated and user.is_staff %}
+                        <button onclick = "window.location.href='{% url 'add' %}'" type="button" class="btn btn-outline-success me-2">Add</button>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <button onclick = "window.location.href='{% url 'viewprofile' %}'" type="button" class="btn btn-outline-success me-2">View Profile</button>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <button onclick = "window.location.href='http://127.0.0.1:8000/accounts/logout/'" type="button" class="btn btn-sm btn-outline-secondary">Logout</button>
+                        {% endif %}
+                    </div>
+                </div>                
+            </div>
+                
+            </div>
+            {% if user.is_authenticated %}
+            <div class="search" style="text-align: end;">
+                <form action="/search/" method="get">
+                    <input type="search" name="query" placeholder="Search">
+                    <button type="submit" class="">Search</button>
+                </form>
+            </div>
+            {% endif %}
+        </nav>
+
+        <main >
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <div class="footer">
+            <hr>
+            <div class="row" style="padding-left: 120px;">
+              <div class="col">
+                </div>
+              <div class="col" style="padding-left: 170px;">
+                <h6>Resources</h6>
+                <a href="https://bit.ly/43aAZ9O" target="_blank" class="btn btn-outline-info"><h6>Documentation</h6></a>
+              </div>
+              <div class="col">
+                <h6>Developer</h6>
+                <a href="https://github.com/maridanne" target="_blank" class="btn btn-outline-info"><h6>GitHub</h6></a>
+              </div>
+            </div>
+        </div>
+    </body>
+</html>  

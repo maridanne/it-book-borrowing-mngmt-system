@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% load socialaccount %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl">IT Book Borrowing Management System</h1>
+    <hr/>
+    {% if user.is_authenticated %}
+        <h1>Profile</h1>
+        <p><strong>First Name:</strong> {{ request.user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ request.user.last_name }}</p>
+        <p><strong>Student ID:</strong> {{ request.user.profile.student_id }}</p>
+        <p><strong>Course:</strong> {{ request.user.profile.course }}</p>
+        <p><strong>Year:</strong> {{ request.user.profile.year }}</p>
+        {% if request.user.profile.profile_pic %}
+        <p><strong>Profile Picture:</strong></p>
+        <img src="{{ request.user.profile.profile_pic.url }}" alt="Profile Picture" style="width: 300px; height: 400px;">
+        {% endif %}
+    {% endif %}
+    <button onclick = "window.location.href='{% url 'editprofile' %}'" type="button" class="btn btn-outline-success me-2">Edit Profile</button>
+{% endblock %} 

@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% load socialaccount %}
+
+{% block title %}
+Welcome!
+{% endblock %}
+
+{% block content %}<br><br>
+    <h1 style="font-size: 50px;"> <strong>IT Book Borrowing <br> Management System</strong></h1>
+    <hr/>
+    <p><span> <br> Welcome to the EVSU Library Management System! <br> <br> Immerse yourself in a world of knowledge and endless possibilities as you navigate through our digital collection, unlocking the doors to new insights and academic excellence. </span></p>
+    {% if user.is_authenticated %}
+    <p>Welcome, {{ user.first_name }} !</p><br><br>
+    {% endif %}
+    <button onclick = "window.location.href='{% url 'browsebooks' %}'" type="button" class="btn btn-primary" style="width: 150px;">browse books</button>
+{% endblock %} 

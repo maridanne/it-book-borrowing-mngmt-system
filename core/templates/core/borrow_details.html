@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% load tailwind_filters %}
+{% load socialaccount %}
+
+{% block title %}
+    Borrow {{ book.title }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl uppercase">Borrow</h1>
+    <hr> <br>
+
+    <form method="POST" enctype='multipart/form-data'">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <br> <br>
+        <button>Borrow</button>
+    </form>
+{% endblock %}

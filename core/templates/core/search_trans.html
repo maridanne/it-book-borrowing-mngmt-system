@@ -1,0 +1,48 @@
+{% extends "account/base.html" %}
+{% load socialaccount %}
+
+{% block title %}Transaction{% endblock %}
+
+{% block content%}
+<h1>Search results for "{{ query }}"</h1>
+<div class="search">
+    <form action="/search_trans/" method="get">
+        <input type="search" name="query" placeholder="Search ID/Borrower">
+        <button type="submit" class="rounded px-2 bg-teal-800 text white">Search</button>
+    </form>
+  </div>
+<br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transaction ID</th>
+      <th>Borrower</th>
+      <th>Book</th>
+      <th>Date Requested</th>
+      <th>Days</th>
+      <th>Date Due</th>
+      <th>Date Returned</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for transaction in transactions %}
+    <tr>
+      <td>{{ transaction.transaction_id }}</td>
+      <td>{{ transaction.borrower }}</td>
+      <td>{{ transaction.book }}</td>
+      <td>{{ transaction.date_requested }}</td>
+      <td>{{ transaction.days }}</td>
+      <td>{{ transaction.date_due }}</td>
+      <td>{{ transaction.date_returned }}</td>
+      <td>
+        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded" href="{% url 'uptrans' transaction.transaction_id %}">Set Due</a>
+        <a class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-8 rounded" href="{% url 'returned' transaction.transaction_id %}">Returned</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

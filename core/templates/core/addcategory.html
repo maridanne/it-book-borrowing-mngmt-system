@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load tailwind_filters %}
+
+{% block title %}
+    Add new category
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl uppercase">New Category</h1>
+    <hr> <br>
+    {% if messages %}
+        <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+            {% for message in messages %}
+                <p id="messages"> {{message}}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+        <form method="POST" enctype='multipart/form-data' class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br><br>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded">Add</button>
+        </form>
+    
+{% endblock %}

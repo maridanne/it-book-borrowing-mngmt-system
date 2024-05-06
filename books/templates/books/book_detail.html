@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    {{ book.title }}
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<div class="grid grid-cols-2 gap-4">
+    <div class="col" style="display: flex;">
+
+        <div class="row">
+            <div class="col">
+                {% if book.image %}
+            <div class="image">
+                <img src="{{ book.image.url }}" alt="{{ book.title }}"style="width: 300px; height: 400px;">
+            </div>
+            {% else %}
+                <div class="image">
+                    <img src="/media/uploads/book_images/default.jpg" alt = "{{ book.title }}" style="">
+                </div>
+            {% endif %}
+            </div>
+
+            <div class="col">
+                <h1 class="text-2xl">{{ book.title }}</h1>
+
+                <p>{{ book.author }}</p>
+                {% if book.description %}
+                    <p>{{ book.description }}</p>
+                {% endif %}<br><br>
+
+                {% if user.is_authenticated and user.is_staff %}
+                <section style="padding-right: 10px;">
+                    <button onclick = "window.location.href='{% url 'updatebook' book.pk %}'" class="btn btn-primary" style="width: 150px; margin-right: 10px;">UPDATE</button>
+                    <button onclick = "window.location.href='{% url 'deletebook' book.pk %}'" class="btn btn-primary" style="width: 150px;">DELETE</button>
+
+                </section>
+                {% else %}
+                    <button onclick = "window.location.href='{% url 'borrow' book.slug %}'" class="btn btn-primary" style="width: 150px;">borrow</button>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+        
+        <br>
+    </div>
+
+    
+</div>
+<br>
+
+
+{% endblock %}

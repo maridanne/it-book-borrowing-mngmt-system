@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load tailwind_filters %}
+
+{% block title %}
+    Add new book
+{% endblock %}
+
+{% block content %}
+    <h1 class="">New Book</h1>
+    <hr> <br>
+    {% if messages %}
+        <div class="" role="alert">
+            {% for message in messages %}
+                <p id="messages"> {{message}}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br><br>
+            <button class="">Add</button>
+        </form>
+    
+{% endblock %}
